@@ -16,10 +16,8 @@ class MainMenuScene: SKScene, SKPhysicsContactDelegate
 
     var titleLabel = SKLabelNode(fontNamed: "Copperplate")
     var tapScreenLabel = SKLabelNode(fontNamed: "Copperplate")
-
     var backgroundOne : SKSpriteNode?
     var backgroundTwo : SKSpriteNode?
-
     var ship1 : SKSpriteNode?
     var ship2 : SKSpriteNode?
     var ship3 : SKSpriteNode?
@@ -34,28 +32,20 @@ class MainMenuScene: SKScene, SKPhysicsContactDelegate
     {
         super.init(size: size)
 
-
-
         addBackgroundOne()
-
         addBackgroundTwo()
-
         addMainMenuSceneLabels()
-
         addShips()
     }
 
-
-
+    
     func addShips()
     {
         // Ship 1
         ship1 = SKSpriteNode(imageNamed: "greenship")
         ship1!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         ship1!.position = CGPoint(x: self.size.width / 2.0, y: -50.0) //50
-
         let moveUpAction = SKAction.moveToY(800, duration: 2)
-
         ship1!.runAction(moveUpAction)
 
         addChild(ship1!)
@@ -65,9 +55,7 @@ class MainMenuScene: SKScene, SKPhysicsContactDelegate
         ship2 = SKSpriteNode(imageNamed: "orangeship")
         ship2!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         ship2!.position = CGPoint(x: self.size.width, y: -700) //50
-
         let moveOverAction = SKAction.moveTo(CGPointMake(0.0, 800), duration: 3)
-
         ship2!.runAction(moveOverAction)
 
         addChild(ship2!)
@@ -77,16 +65,11 @@ class MainMenuScene: SKScene, SKPhysicsContactDelegate
         ship3 = SKSpriteNode(imageNamed: "blueship")
         ship3!.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         ship3!.position = CGPoint(x: 0, y: -1200) //50
-
         let moveRightAction = SKAction.moveTo(CGPointMake(self.size.width, 800), duration: 4)
-        
         ship3!.runAction(moveRightAction)
         
         addChild(ship3!)
     }
-
-
-
 
 
     func addBackgroundOne()

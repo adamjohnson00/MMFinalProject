@@ -15,35 +15,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var backgroundStarsNode : SKSpriteNode?
     var backgroundPlanetNode : SKSpriteNode?
     var playerNode : SKSpriteNode?
-
     var coreMotionManager = CMMotionManager()
     var xAxisAcceleration : CGFloat = 0
-
     var foregroundNode : SKSpriteNode?
-
     let CollisionCategoryPlayer : UInt32 = 0x1 << 1
     let CollisionCategoryPowerUpOrbs : UInt32 = 0x1 << 2
     let CollisionCategoryBlackHoles : UInt32 = 0x1 << 3
     let CollisionCategoryBlueLaser : UInt32 = 0x1 << 4
-
     var engineExhaust : SKEmitterNode?
     var exhaustTime : NSTimer?
-
     var impulseCount = 20
     var score = 0
     let scoreTextNode = SKLabelNode(fontNamed: "Copperplate")
-
     var impulseTextNode = SKLabelNode(fontNamed: "Copperplate")
-
     var orbPopAction = SKAction.playSoundFileNamed("orb_pop.wav", waitForCompletion: false)
-
-
     let startGameTextNode = SKLabelNode(fontNamed: "Copperplate")
-
-
     var music = SKAction.playSoundFileNamed("gamemusic2.wav", waitForCompletion: false)
-
-
 
 
     required init?(coder aDecoder: NSCoder)
@@ -68,33 +55,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate
 
         // The background node must come before the foreground node.
         addBackground()
-      
-        // UNCOMMENT IF NEEDED
         addStarsBackground()
-
         //addPlanetBackground()
-
         addForeground()
-
         addPlayerToForeground()
-
         addOrbsToForeground()
-
         addBadGuys()
-
         addScoreLabel()
-
         addImpulseLabel()
-
         addEngineExhaust()
-
         addStartGameLabel()
 
         runAction(music)
     }
-
-
-
 
 
     func addStartGameLabel()
@@ -154,7 +127,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         backgroundNode = SKSpriteNode(imageNamed: "Background")
         backgroundNode!.size.width = self.frame.size.width
         
-
         // Sets the background's anchor point.
         backgroundNode!.anchorPoint = CGPoint(x: 0.5, y: 0.0)
 
@@ -166,7 +138,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-    // UNCOMMENT IF NEEDED
     func addStarsBackground()
     {
         backgroundStarsNode = SKSpriteNode(imageNamed: "Stars")
@@ -221,20 +192,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         playerNode!.physicsBody!.contactTestBitMask = CollisionCategoryPowerUpOrbs | CollisionCategoryBlackHoles
         playerNode!.physicsBody!.collisionBitMask = 0
 
-
-
-//        let moveFirstAction = SKAction.moveTo(CGPointMake(20, 650), duration: 2)
-//        let moveSecondAction = SKAction.moveTo(CGPointMake(self.size.width, 1400), duration: 4)
-//        let moveThirdAction = SKAction.moveTo(CGPointMake(20, 2150), duration: 3)
-//        let moveFourthAction = SKAction.moveTo(CGPointMake(self.size.width, 3500), duration: 4)
-//        let moveFifthAction = SKAction.moveTo(CGPointMake(100, 4600), duration: 4)
-//        let actionSequence = SKAction.sequence([moveFirstAction, moveSecondAction, moveThirdAction, moveFourthAction, moveFifthAction])
-//
-//        playerNode!.runAction(actionSequence)
-
-
-
         foregroundNode!.addChild(playerNode!)
+        
+        //        let moveFirstAction = SKAction.moveTo(CGPointMake(20, 650), duration: 2)
+        //        let moveSecondAction = SKAction.moveTo(CGPointMake(self.size.width, 1400), duration: 4)
+        //        let moveThirdAction = SKAction.moveTo(CGPointMake(20, 2150), duration: 3)
+        //        let moveFourthAction = SKAction.moveTo(CGPointMake(self.size.width, 3500), duration: 4)
+        //        let moveFifthAction = SKAction.moveTo(CGPointMake(100, 4600), duration: 4)
+        //        let actionSequence = SKAction.sequence([moveFirstAction, moveSecondAction, moveThirdAction, moveFourthAction, moveFifthAction])
+        //
+        //        playerNode!.runAction(actionSequence)
+        
     }
 
 
@@ -262,10 +230,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             orbNode.position = orbNodePosition
             orbNode.physicsBody = SKPhysicsBody(circleOfRadius: orbNode.size.width / 2)
             orbNode.physicsBody!.dynamic = false
-
             orbNode.physicsBody!.categoryBitMask = CollisionCategoryPowerUpOrbs
             orbNode.physicsBody!.collisionBitMask = 0
-
             orbNode.name = "POWER_UP_ORB"
 
             foregroundNode!.addChild(orbNode)
@@ -287,10 +253,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             badguy.position = CGPointMake(self.size.width, 600.0 * CGFloat(i))
             badguy.physicsBody = SKPhysicsBody(circleOfRadius: badguy.size.width / 2)
             badguy.physicsBody!.dynamic = false
-
             badguy.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
             badguy.name = "BLACK_HOLE"
-
             badguy.runAction(moveAction)
 
             foregroundNode!.addChild(badguy)
@@ -308,11 +272,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             badguy.position = CGPointMake(self.size.width, 600.0 * CGFloat(i))
             badguy.physicsBody = SKPhysicsBody(circleOfRadius: badguy.size.width / 2)
             badguy.physicsBody!.dynamic = false
-
             badguy.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
             badguy.physicsBody!.collisionBitMask = 0
             badguy.name = "BLACK_HOLE"
-
             badguy.runAction(moveAction2)
 
             foregroundNode!.addChild(badguy)
@@ -330,18 +292,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             badguy.position = CGPointMake(self.size.width - 80.0, 600.0 * CGFloat(i))
             badguy.physicsBody = SKPhysicsBody(circleOfRadius: badguy.size.width / 2)
             badguy.physicsBody!.dynamic = false
-
             badguy.physicsBody!.categoryBitMask = CollisionCategoryBlackHoles
             badguy.physicsBody!.collisionBitMask = 0
             badguy.name = "BLACK_HOLE"
-
             badguy.runAction(moveAction3)
 
             foregroundNode!.addChild(badguy)
         }
     }
-
-
 
     
     // This method executes when the user touches the screen.
@@ -389,13 +347,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
-
-
-
-
-
-
     // This method executes when the player node (the spaceship) touches either orbs or black holes.
     func didBeginContact(contact: SKPhysicsContact)
     {
@@ -439,17 +390,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             // Removes black hole from screen.
             nodeB.removeFromParent()
         }
-
-
-
-    }
-
-
-
-
-
-
-
+}
 
 
     override func update(currentTime: NSTimeInterval)
@@ -481,13 +422,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
     override func didSimulatePhysics()
     {
-
         if playerNode != nil
         {
-
             self.playerNode!.physicsBody!.velocity = CGVectorMake(self.xAxisAcceleration * 380.0, self.playerNode!.physicsBody!.velocity.dy)
 
             if playerNode!.position.x < -(playerNode!.size.width / 2)
@@ -503,14 +441,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 
-
     deinit
     {
         self.coreMotionManager.stopAccelerometerUpdates()
     }
 
-
-
+  
     func hideEngineExhaust(timer: NSTimer!)
     {
         if !engineExhaust!.hidden
@@ -519,8 +455,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
     }
 
-
-
+    
     func gameOverWithResult(gameResult: Bool)
     {
         playerNode!.removeFromParent()
@@ -533,25 +468,3 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
