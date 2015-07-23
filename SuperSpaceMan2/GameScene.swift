@@ -30,7 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var impulseTextNode = SKLabelNode(fontNamed: "Copperplate")
     var orbPopAction = SKAction.playSoundFileNamed("orb_pop.wav", waitForCompletion: false)
     let startGameTextNode = SKLabelNode(fontNamed: "Copperplate")
-    var music = SKAction.playSoundFileNamed("gamemusic2.wav", waitForCompletion: false)
+//    var music = SKAction.playSoundFileNamed("gamemusic2.wav", waitForCompletion: false)
 
 
     required init?(coder aDecoder: NSCoder)
@@ -66,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         addEngineExhaust()
         addStartGameLabel()
 
-        runAction(music)
+//        runAction(music)
     }
 
 
